@@ -1,0 +1,5 @@
+c:\users\cyberboy\documents\visual studio 2013\Projects\EmployeeRecordSystem\EmployeeRecordSystem\bin\Debug\EmployeeRecordSystem.exe
+c:\users\cyberboy\documents\visual studio 2013\Projects\EmployeeRecordSystem\EmployeeRecordSystem\bin\Debug\EmployeeRecordSystem.pdb
+c:\users\cyberboy\documents\visual studio 2013\Projects\EmployeeRecordSystem\EmployeeRecordSystem\obj\Debug\EmployeeRecordSystem.csprojResolveAssemblyReference.cache
+c:\users\cyberboy\documents\visual studio 2013\Projects\EmployeeRecordSystem\EmployeeRecordSystem\obj\Debug\EmployeeRecordSystem.exe
+c:\users\cyberboy\documents\visual studio 2013\Projects\EmployeeRecordSystem\EmployeeRecordSystem\obj\Debug\EmployeeRecordSystem.pdb
