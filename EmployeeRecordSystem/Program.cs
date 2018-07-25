@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -15,6 +17,8 @@ namespace EmployeeRecordSystem
     {
         static int _numberOfEmp;
         static Employee emp;
+        static string filePath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\log.txt";
+    
         public static string DisplayMessage(string departmentName)
         {
             string displayMessage="";
@@ -34,33 +38,27 @@ namespace EmployeeRecordSystem
         private static void AddEmployee()
         {
             string choice = "1";
-            int empId;
-            string empName,deptName,qualification,dept;
             
             Console.WriteLine("Enter Number of Employees to be Added");
             _numberOfEmp = int.Parse(Console.ReadLine());
             
-            Employee []employee = new Employee[_numberOfEmp];
             emp = new Employee();
             addDepartment addDept = new addDepartment(AddDepartment);
             displayMessage dispMessage = new displayMessage(DisplayMessage);
 
+            Employee[] employee = new Employee[_numberOfEmp];
             for (int index = 0; index < _numberOfEmp && choice.Equals("1") && !choice.Equals("exit"); index++)
             {
-
+                employee[index] = new Employee();
                 Console.WriteLine("Enter Employee ID");
-                empId= int.Parse(Console.ReadLine());
+                employee[index].EmpId= int.Parse(Console.ReadLine());
                 Console.WriteLine("Enter Employee Name");
-                empName = Console.ReadLine();
+                employee[index].EmpName = Console.ReadLine();
                 Console.WriteLine("Enter Qualification");
-                qualification = Console.ReadLine();
-                dept = addDept(qualification);
-                Console.WriteLine(dispMessage(dept));
+                employee[index].Qualification = Console.ReadLine();
+                employee[index].EmpDeptName = addDept(employee[index].Qualification);
+                Console.WriteLine(dispMessage(employee[index].EmpDeptName));
                 Console.WriteLine("Press 1 to add employees\nTo Exit type exit");
-                employee[index].EmpId = (int)empId;
-                employee[index].EmpName = empName;
-                employee[index].Qualification = qualification;
-                employee[index].EmpDeptName = dept;
                 choice = Console.ReadLine();
             }
 
@@ -81,6 +79,14 @@ namespace EmployeeRecordSystem
             catch (EmptyDepartment e)
             {
                 Console.WriteLine(e.Message);
+                using(StreamWriter streamWriter=new StreamWriter(filePath,true))
+                {
+                    streamWriter.WriteLine("Exception:" + e.Message + "\n Stack Trace:"+e.StackTrace);
+                }
+            }
+            finally
+            {
+                Console.WriteLine("Please enter a valid qualification");
             }
             return _departmentName;
         }

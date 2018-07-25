@@ -7,7 +7,7 @@ namespace EmployeeRecordSystem
 {
     class Employee
     {
-        public int _empId;
+        int _empId;
         string _empName;
         string _empDeptName;
         string _qualification;
